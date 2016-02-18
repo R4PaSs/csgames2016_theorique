@@ -10,6 +10,7 @@
 \usepackage{graphics}
 \usepackage{graphicx}
 \usepackage{listings}
+\usepackage{skak}
 \usepackage{tikz}
 \usetikzlibrary{arrows}
 \usepackage{algpseudocode}
@@ -115,15 +116,41 @@ Un \emph{arbre binaire} est une arborescence dont chaque sommet a au plus $2$ en
 
 % Numéros de téléphone
 \question
-TODO: Numéros de téléphone
+Combien existe-t-il de numéros de téléphone de $10$ chiffres (on suppose que les $10^{10}$ possibilités sont toutes valides) qui contiennent au moins une fois chacun des chiffres impairs ? Par exemple, le numéro $418$-$937$-$5351$ contient les chiffres $1$, $3$, $5$, $7$ et $9$, de sorte qu'il devrait être compté.
+\begin{solution}
+Il est plus facile de compter d'abord le nombre $n$ de numéros de téléphones pour lesquels il manque au moins un chiffre impair. Dénotons par $N_i$ l'ensemble des numéros de téléphone dans lesquels le chiffre $i$ n'apparaît pas. Alors clairement, 
+$$n = \left| N_1 \cup N_3 \cup N_5 \cup N_7 \cup N_9 \right|.$$
+Évidemment, les ensembles $N_1$, $N_3$, $N_5$, $N_7$ et $N_9$ ne sont pas disjoints et donc on doit utiliser le principe d'inclusion-exclusion. Tout d'abord, notons que $|N_i| = 9^{10}$ pour $i = 1,3,5,7,9$ puisqu'il suffit d'exclure, à chaque position, le chiffre interdit (on a donc $9$ choix à chaque position). En suivant cette logique, on remarque que $|N_i \cap N_j| = 8^{10}$ pour $i,j$ impairs et distincts, puis $|N_i \cap N_j \cap N_k| = 7^{10}$, $|N_i \cap N_j \cap N_k \cap N_\ell| = 6^{10}$ et finalement $|N_i \cap N_j \cap N_k \cap N_\ell \cap N_m| = 5^{10}$.
+
+Il ne nous reste qu'à utiliser le principe d'inclusion-exclusion. On obtient
+\begin{eqnarray*}
+  n & = & \left| N_1 \cup N_3 \cup N_5 \cup N_7 \cup N_9 \right| \\
+    & = & (|N_1| + |N_2| + |N_3| + |N_4| + |N_5|) \\
+    &   & - (|N_1 \cap N_2| + |N_1 \cap N_3| + |N_1 \cap N_4| + \ldots + |N_4 \cap N_5|) \\
+    &   & + (|N_1 \cap N_2 \cap N_3| + |N_1 \cap N_2 \cap N_4| + \ldots + |N_3 \cap N_4 \cap N_5|) \\
+    &   & - (|N_1 \cap N_2 \cap N_3 \cap N_4| + |N_1 \cap N_2 \cap N_3 \cap N_5| + \ldots + |N_2 \cap N_3 \cap N_4 \cap N_5|) \\
+    &   & + |N_1 \cap N_2 \cap N_3 \cap N_4 \cap N_5| \\
+    & = & C(5,1) \cdot 9^{10} - C(5,2) \cdot 8^{10} + C(5,3) \cdot 7^{10} - C(5,4) \cdot 6^{10} + C(5,5) \cdot 5^{10} \\
+    & = & 9228691000.
+\end{eqnarray*}
+Le nombre de numéros de téléphone cherché est donc
+$$10^{10} - 9228691000 = 771309000.$$
+\end{solution}
 
 % Chemins dans une grille
 \question
 Considérez une grille de $r$ rangées et $c$ colonnes (voir Figure~\ref{F:grille}). Dans cette question, on s'intéresse à compter le nombre de chemins à partir du point $(0,0)$ jusqu'au point $(c,r)$ n'utilisant que des déplacements vers la droite (identifiés par la lettre $d$) et vers le haut (identifiés par $h$). Donnez une formule qui compte le nombre de chemins distincts de $(0,0)$ vers $(c,r)$, pour toutes valeurs $r,c \geq 1$.
 
-% 
+% Nombres répétitifs
 \question
-TODO
+On dit d'un nombre entier qu'il est \emph{répétitif} si tous ses chiffres en base $10$ sont identiques. Par exemple, $33$ et $999$ sont des nombres répétitifs. Aussi, soit $E$ un ensemble de $12$ nombres distincts quelconques entre $1$ et $99$ inclusivement. Montrez qu'il existe au moins deux nombres $x,y \in E$ tels que $x - y$ est un nombre répétitif.
+\begin{solution}
+Soit $X$ l'ensemble des nombres entre $1$ et $99$. Il y a au moins deux solutions à ce p
+roblème.
+\textbf{Solution 1}. Remarquons que si un nombre n'a qu'un seul chiffre, il est nécessairement répétitif. Par conséquent, il suffit de montrer qu'on a nécessairement deux nombres dans $E$ qui ont une différence d'au plus $9$. Pour $i = 0,1,\ldots,11$, soit $T_i = \{x \in X \mid 9i \leq x \leq 9i+9\}$ (autrement dit, les $T_i$ sont les tiroirs). Par le principe des tiroirs, si on choisit un ensemble $E$ de $12$ nombres entre $1$ et $99$, alors il existe $x, y \in E$ tels que $x \in T_i$, pour un certain entier $i$. Comme $9i \leq x,y \leq 9i + 9$, alors $|x - y| \leq (9i + 9) - 9i = 9$, c'est-à-dire que $x - y$ ou $y - x$ est un nombre répétitif.
+
+\textbf{Solution 2}. On constate également que si $|x - y|$ est un multiple de $11$, alo rs $|x - y|$ est un nombre répétitif. Pour $i = 0,1,\ldots,10$, soit $T_i = \{x \in X \mid x \bmod 11 = i$ (autrement dit, on place les nombres dans le tiroir correspondant à l eur reste lorsqu'on les divise par $11$). Par le principe des tiroirs, il existe $x,y \in T_i$ pour un certain entier $i$, c'est-à-dire que $x \bmod 11 = y \bmod 11$. On en conclut que $(x - y) \bmod 11 = 0$, c'est-à-dire que $x - y$ ou $y - x$ est un multiple de $11$ entre $1$ et $99$, qui est un nombre répétitif.
+\end{solution}
 
 % Graphes
 \uplevel{Les questions suivantes portent sur la \textbf{théorie des graphes}.
@@ -237,9 +264,14 @@ Expliquez sous quelle condition le joueur A ou le joueur B a une stratégie gagn
 \question
 Nous nous intéressons maintenant à une variante du jeu d'échecs traditionnels, dans laquelle chaque joueur peut jouer \emph{deux coups consécutifs}. Sachant que ce sont les blancs qui commencent et les noirs qui jouent en deuxième, montrez qu'avec cette variante, les noirs ne peuvent pas avoir une stratégie gagnante. \emph{Indice~:} procédez par l'absurde.
 
-% Rétro-analyse
+% Échecs
 \question
-Rétro-analyse
+(Tiré du livre \emph{The Chess Mysteries of the Arabian Knights}, de R. Smullyan) Considérez la position suivante aux échecs.
+\fenboard{8/8/8/1r1b4/B7/8/8/3k4 w - - 0 20}
+\[ \showboard \]
+La position du roi blanc a été cachée. Cependant, on ne sait pas si c'est au tour de blanc ou noir de jouer.
+
+Indiquez quelle est sa position, sachant que tous les coups précédents ont été légaux et qu'il n'y a qu'une solution possible.
 
 %
 \question
