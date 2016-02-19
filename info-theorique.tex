@@ -13,7 +13,9 @@
 \usepackage{skak}
 \usepackage{tikz}
 \usetikzlibrary{arrows}
+\usepackage{tkz-berge}
 \usepackage{algpseudocode}
+\usepackage{hyperref}
 
 % Paramètres globaux
 \bonuspointpoints{point \emph{bonus}}{points \emph{boni}}
@@ -54,6 +56,9 @@
 \newcommand{\enteteproc}[2]{\vskip\baselineskip \hspace*{\fill} \algorithmicprocedure~\Call{#1}{#2} \hspace*{\fill} \vskip\baselineskip}
 \newcommand{\entetefunc}[3]{\vskip\baselineskip \hspace*{\fill} \algorithmicfunction~\Call{#1}{#2} : #3 \hspace*{\fill} \vskip\baselineskip}
 
+% Graphes
+\tikzset{VertexStyle/.style={shape=circle, fill=black, inner sep=0pt, outer sep=0pt, minimum size=1.5mm, draw}}
+
 \begin{document}
 	
 \allowdisplaybreaks
@@ -74,7 +79,7 @@ Cette épreuve contient 20 questions réparties en 4 thèmes de 5 questions chac
 \begin{enumerate}
   \item La combinatoire;
   \item La théorie des graphes;
-  \item La théorie des jeux;
+  \item La théorie des jeux et des énigmes;
   \item Les probabilités.
 \end{enumerate}
 La pondération est la même pour chacune des questions. Bonne chance !
@@ -186,7 +191,7 @@ Pour toutes valeurs de $n$ et $m$ bien définies, donnez la taille d'un transver
   \part $K_n$;
   \part $C_n$;
   \part $W_n$;
-  \part $h_n$;
+  \part $H_n$;
   \part $K_{m,n}$.
 \end{parts}
 
@@ -250,7 +255,7 @@ Montrez que tout graphe $k$-parti est $k$-coloriable.
 Soit $k$-COLORD le problème de \emph{décider} si un graphe non orienté $G$ est $k$-coloriable et $k$-COLOR le problème de \emph{trouver} un $k$-coloriage de $G$. Montrez que les problèmes $k$-COLORD et $k$-COLOR sont de même difficulté à complexité polynomiale près. \emph{Indice~:} La question~\ref{Q:kparti} devrait vous être utile.
 
 % Jeux
-\uplevel{Les questions suivantes portent sur la \textbf{théorie des jeux}.}
+\uplevel{Les questions suivantes portent sur la \textbf{théorie des jeux et des énigmes}.}
 
 % Jeu de Nim
 \question
@@ -260,26 +265,36 @@ On dit d'un joueur qu'il a une \emph{stratégie gagnante} s'il peut gagner à to
 
 Expliquez sous quelle condition le joueur A ou le joueur B a une stratégie gagnante au jeu de Nim. \emph{Remarque~:} Dans le jeu de Nim, lorsque la valeur de $n$ est fixée, un des deux joueurs a nécessairement une stratégie gagnante.
 
-% Jeu d'échecs
-\question
-Nous nous intéressons maintenant à une variante du jeu d'échecs traditionnels, dans laquelle chaque joueur peut jouer \emph{deux coups consécutifs}. Sachant que ce sont les blancs qui commencent et les noirs qui jouent en deuxième, montrez qu'avec cette variante, les noirs ne peuvent pas avoir une stratégie gagnante. \emph{Indice~:} procédez par l'absurde.
-
 % Échecs
 \question
 (Tiré du livre \emph{The Chess Mysteries of the Arabian Knights}, de R. Smullyan) Considérez la position suivante aux échecs.
 \fenboard{8/8/8/1r1b4/B7/8/8/3k4 w - - 0 20}
 \[ \showboard \]
-La position du roi blanc a été cachée. Cependant, on ne sait pas si c'est au tour de blanc ou noir de jouer.
+La position du roi blanc a été cachée. De plus, on ne sait pas si c'est au tour de blanc ou noir de jouer.
 
-Indiquez quelle est sa position, sachant que tous les coups précédents ont été légaux et qu'il n'y a qu'une solution possible.
+Devinez quelle est la position du roi blanc, sachant que tous les coups précédents ont été légaux et qu'il n'y a qu'une solution possible.
+\begin{solution}
+La solution se trouve à \href{https://www.chess.com/forum/view/fun-with-chess/where-is-the-king-retrograde-analysis}{https://www.chess.com/forum/view/fun-with-chess/where-is-the-king-retrograde-analysis}.
+\end{solution}
 
-%
+% Jeu d'échecs à deux coups
 \question
-TODO
+Nous nous intéressons maintenant à une variante du jeu d'échecs traditionnels, dans laquelle chaque joueur peut jouer \emph{deux coups consécutifs}. Sachant que ce sont les blancs qui commencent et les noirs qui jouent en deuxième, montrez qu'avec cette variante, les noirs ne peuvent pas avoir une stratégie gagnante. \emph{Indice~:} procédez par l'absurde.
 
-%
+% Jet d'oeuf
 \question
-TODO
+Vous vous trouvez dans un édifice de $100$ étages (numérotées de $1$ à $100$) avec $2$ oeufs. Chacun de ces oeufs a la particularité qu'il existe un nombre $n$ entre $1$ et $100$ (le nombre $n$ est le même pour les $2$ oeufs) tel que~:
+\begin{itemize}
+  \item si vous le laissez tomber d'un étage entre $1$ et $n$, alors il ne se casse pas;
+  \item si vous le laissez tomber d'un étage entre $n + 1$ et $100$, alors il se casse.
+\end{itemize}
+Proposez une stratégie optimale pour deviner la valeur de $n$ qui minimise le nombre de fois que vous devez laisser tomber un oeuf. Justifiez votre réponse.
+
+% Tonneaux de vin
+\question
+Vous êtes un homme riche et sans scrupule, ayant en votre possession un nombre illimité d'esclaves. Dans six heures aura lieu un banquet auquel sont conviés de nombreux invités. Cependant, vous venez d'apprendre que, parmi les $128$ tonneaux de vin que vous avez l'intention de servir, exactement un d'entre eux a été empoisonné. De plus, vous savez que les effets du poison, lorsque ingéré, ne se manifestent qu'après quatre heures. Vous décidez donc de tester les tonneaux de vins sur vos esclaves.
+
+Proposez une stratégie qui vous permettra de déterminer avec certitude quel tonneau de vin est empoisonné, en minimisant le nombre d'esclaves sacrifiés. Plus bas sera le nombre, plus de points vous obtiendrez.
 
 % Probabilités
 \uplevel{Les questions suivantes portent sur la \textbf{théorie des probabilités}.}
@@ -299,9 +314,25 @@ Supposez que pour un problème de décision donné $P$, vous ayez à votre dispo
 \end{itemize}
 Est-il possible de construire un algorithme $C$ à partir des algorithmes $A$ et $B$ de telle sorte que l'algorithme $C$ retourne \emph{vrai} ou \emph{faux} sans jamais se tromper ? Justifiez.
 
+% Arbre binaire de recherche
+\question
+Considérez un arbre binaire de recherche quelconque. On suppose que les services suivants sont disponibles pour tout arbre $T$~:
+\begin{itemize}
+  \item $T.\Call{estVide}$ retourne vrai si et seulement si $T$ est un arbre vide;
+  \item $T.\Call{contenu}$ retourne la valeur contenue dans la racine de l'arbre $T$;
+  \item $T.\Call{taille}$ retourne le nombre total de noeuds dans l'arbre $T$;
+  \item $T.\Call{gauche}$ retourne le sous-arbre gauche de $T$ (possiblement vide);
+  \item $T.\Call{droit}$ retourne le sous-arbre droit de $T$ (possiblement vide).
+\end{itemize}
+En n'utilisant que les services ci-haut, donnez le pseudocode d'une fonction
+\begin{center}
+\Call{ValeurAleatoire}{$T$ : arbre binaire de recherche}
+\end{center}
+qui retourne au hasard une valeur présente dans l'arbre $T$ (on suppose qu'une valeur ne peut pas apparaître plus d'une fois, pour simplifier). Notez que chaque valeur doit avoir la \textbf{même probabilité} d'être retournée. Aussi, vous pouvez supposer qu'il existe une fonction \Call{random}{$n$} qui retourne un nombre entier entre $0$ et $n - 1$ (inclusivement) au hasard avec probabilité uniforme.
+
 % Échantillon
 \question
-Considérez un ensemble de $n$ entiers quelconques (distincts). On souhaite former un échantillon de $i$ entiers distincts tirés aléatoirement parmi les $n$ entiers disponibles (c'est donc un tirage sans remise). Pour cela, on utilise l'algorithme suivant~:
+Considérez un ensemble de $n$ entiers quelconques (distincts). On souhaite former un échantillon de $i$ entiers distincts ($1 \leq i \leq n$) tirés aléatoirement parmi les $n$ entiers disponibles (c'est donc un tirage sans remise). Pour cela, on utilise l'algorithme suivant~:
 \begin{algorithmic}[1]
   \Function{Échantillon}{$E$ : ensemble d'entiers, $i$ : entier}
     \State $S \gets \emptyset$
@@ -319,15 +350,217 @@ Considérez un ensemble de $n$ entiers quelconques (distincts). On souhaite form
   \part Montrez qu'en moyenne, le nombre de tours de boucle \textbf{tant que} effectués est $\bigo(n\log n)$, où $n$ est la taille de l'ensemble $E$ et $0 \leq i \leq n$.
 \end{parts}
 
-%
+% Échantillon
 \question
-TODO
+Considérez un tableau $T$ de $n$ entiers non ordonnés et pas nécessairement distincts. Soit $x$ un entier apparaissant $k$ fois dans le tableau $T$. Clairement, $0 \leq k \leq n$.
 
-%
-\question
-TODO
+On s'intéresse aux nombres de valeurs inspectées lorsqu'on effectue une fouille linéaire du tableau $T$. Plus précisément, on considère l'algorithme suivant ($T$ est indicé à partir de $0$)~:
+\begin{algorithmic}[1]
+  \Function{EstDansTableau}{$T$ : tableau, $x$ : élément}
+    \State Soit $n$ le nombre d'éléments dans $T$
+    \State $i \gets 0$
+    \While{$i < n$ \textbf{et} $T[i] \neq x$}
+      \State $i \gets i + 1$
+    \EndWhile
+    \State \Return $i < n$
+  \EndFunction
+\end{algorithmic}
+Pour toutes valeurs de $k$ possibles, donnez une formule indiquant le nombre de valeurs moyennes qu'on s'attend à inspecter? Vous devez donner une expression \textbf{exacte}, c'est-à-dire pas avec la notation $\bigo$. \emph{Indice~:} Considérez séparément les cas $k = 0$, $k = 1$ et $k > 1$.
 
 \end{questions}
+
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+    % Complets
+    \begin{scope}[xshift=-1cm, yshift=0cm]
+      \node at (0,0) {(a)};
+    \end{scope}
+    \begin{scope}[xshift=0cm, yshift=0cm]
+      \SetVertexNoLabel \Vertices{circle}{A}
+    \end{scope}
+    \begin{scope}[xshift=4cm, yshift=0cm]
+      \SetVertexNoLabel \Vertices{circle}{A,B}
+      \Edges(A,B)
+    \end{scope}
+    \begin{scope}[xshift=7cm, yshift=0cm]
+      \SetVertexNoLabel \Vertices{circle}{A,B,C}
+      \Edges(A,B,C,A)
+    \end{scope}
+    \begin{scope}[xshift=10cm, yshift=0cm]
+      \SetVertexNoLabel \Vertices{circle}{A,B,C,D}
+      \Edges(A,B,C,D,A,C,B,D)
+    \end{scope}
+    \begin{scope}[xshift=13cm, yshift=0cm]
+      \SetVertexNoLabel \Vertices{circle}{A,B,C,D,E}
+      \Edges(A,B,C,D,E,A,C,E,B,D,A)
+    \end{scope}
+    % Cycles
+    \begin{scope}[xshift=-1cm, yshift=-3cm]
+      \node at (0,0) {(b)};
+    \end{scope}
+    \begin{scope}[xshift=1cm, yshift=-3cm]
+      \SetVertexNoLabel \Vertices{circle}{A,B,C}
+      \Edges(A,B,C,A)
+    \end{scope}
+    \begin{scope}[xshift=4cm, yshift=-3cm]
+      \SetVertexNoLabel \Vertices{circle}{A,B,C,D}
+      \Edges(A,B,C,D,A)
+    \end{scope}
+    \begin{scope}[xshift=7cm, yshift=-3cm]
+      \SetVertexNoLabel \Vertices{circle}{A,B,C,D,E}
+      \Edges(A,B,C,D,E,A)
+    \end{scope}
+    \begin{scope}[xshift=10cm, yshift=-3cm]
+      \SetVertexNoLabel \Vertices{circle}{A,B,C,D,E,F}
+      \Edges(A,B,C,D,E,F,A)
+    \end{scope}
+    \begin{scope}[xshift=13cm, yshift=-3cm]
+      \SetVertexNoLabel \Vertices{circle}{A,B,C,D,E,F,G}
+      \Edges(A,B,C,D,E,F,G,A)
+    \end{scope}
+    % Roues
+    \begin{scope}[xshift=-1cm, yshift=-6cm]
+      \node at (0,0) {(c)};
+    \end{scope}
+    \begin{scope}[xshift=1cm, yshift=-6cm]
+      \SetVertexNoLabel \Vertices{circle}{A,B,C}
+      \Edges(A,B,C,A)
+      \Vertex{O}
+      \Edge(O)(A)
+      \Edge(O)(B)
+      \Edge(O)(C)
+    \end{scope}
+    \begin{scope}[xshift=4cm, yshift=-6cm]
+      \SetVertexNoLabel \Vertices{circle}{A,B,C,D}
+      \Edges(A,B,C,D,A)
+      \Vertex{O}
+      \Edge(O)(A)
+      \Edge(O)(B)
+      \Edge(O)(C)
+      \Edge(O)(D)
+    \end{scope}
+    \begin{scope}[xshift=7cm, yshift=-6cm]
+      \SetVertexNoLabel \Vertices{circle}{A,B,C,D,E}
+      \Edges(A,B,C,D,E,A)
+      \Vertex{O}
+      \Edge(O)(A)
+      \Edge(O)(B)
+      \Edge(O)(C)
+      \Edge(O)(D)
+      \Edge(O)(E)
+    \end{scope}
+    \begin{scope}[xshift=10cm, yshift=-6cm]
+      \SetVertexNoLabel \Vertices{circle}{A,B,C,D,E,F}
+      \Edges(A,B,C,D,E,F,A)
+      \Vertex{O}
+      \Edge(O)(A)
+      \Edge(O)(B)
+      \Edge(O)(C)
+      \Edge(O)(D)
+      \Edge(O)(E)
+      \Edge(O)(F)
+    \end{scope}
+    \begin{scope}[xshift=13cm, yshift=-6cm]
+      \SetVertexNoLabel \Vertices{circle}{A,B,C,D,E,F,G}
+      \Edges(A,B,C,D,E,F,G,A)
+      \Vertex{O}
+      \Edge(O)(A)
+      \Edge(O)(B)
+      \Edge(O)(C)
+      \Edge(O)(D)
+      \Edge(O)(E)
+      \Edge(O)(F)
+      \Edge(O)(G)
+    \end{scope}
+    % Hypercubes
+    \begin{scope}[xshift=-1cm, yshift=-9.5cm]
+      \node at (0,0) {(d)};
+    \end{scope}
+    \begin{scope}[xshift=1.5cm, yshift=-9.5cm]
+      \SetVertexNoLabel \Vertices{circle}{A,B}
+      \Edges(A,B)
+    \end{scope}
+    \begin{scope}[xshift=4.5cm, yshift=-9.5cm, rotate=45]
+      \SetVertexNoLabel \Vertices{circle}{A,B,C,D}
+      \Edges(A,B,C,D,A)
+    \end{scope}
+    \begin{scope}[xshift=7.5cm, yshift=-9.5cm]
+      \SetVertexNoLabel
+      \begin{scope}[rotate=45]
+      \Vertices{circle}{A,B,C,D}
+      \begin{scope}[xshift=5mm] \Vertices{circle}{E,F,G,H} \end{scope}
+      \end{scope}
+      \Edges(A,B,C,D,A)
+      \Edges(E,F,G,H,E)
+      \Edge(A)(E)
+      \Edge(B)(F)
+      \Edge(C)(G)
+      \Edge(D)(H)
+    \end{scope}
+    \begin{scope}[xshift=10.5cm, yshift=-9.5cm]
+      \SetVertexNoLabel
+      \begin{scope}[rotate=45]
+      \Vertices{circle}{A,B,C,D}
+      \begin{scope}[xshift=5mm] \Vertices{circle}{E,F,G,H} \end{scope}
+      \end{scope}
+      \Edges(A,B,C,D,A)
+      \Edges(E,F,G,H,E)
+      \Edge(A)(E)
+      \Edge(B)(F)
+      \Edge(C)(G)
+      \Edge(D)(H)
+      \begin{scope}[xshift=2cm]
+      \begin{scope}[rotate=45]
+      \Vertices{circle}{Ap,Bp,Cp,Dp}
+      \begin{scope}[xshift=5mm] \Vertices{circle}{Ep,Fp,Gp,Hp} \end{scope}
+      \end{scope}
+      \Edges(Ap,Bp,Cp,Dp,Ap)
+      \Edges(Ep,Fp,Gp,Hp,Ep)
+      \Edge(Ap)(Ep)
+      \Edge(Bp)(Fp)
+      \Edge(Cp)(Gp)
+      \Edge(Dp)(Hp)
+      \Edge[style={bend left}](A)(Ap)
+      \Edge[style={bend left}](B)(Bp)
+      \Edge[style={bend left}](C)(Cp)
+      \Edge[style={bend left}](D)(Dp)
+      \Edge[style={bend left}](E)(Ep)
+      \Edge[style={bend left}](F)(Fp)
+      \Edge[style={bend left}](G)(Gp)
+      \Edge[style={bend left}](H)(Hp)
+      \end{scope}
+    \end{scope}
+    % Bipartis complets
+    \begin{scope}[xshift=-1cm, yshift=-12cm]
+      \node at (0,-0.5) {(e)};
+    \end{scope}
+    \begin{scope}[xshift=1cm, yshift=-12cm]
+      \SetVertexNoLabel
+      \Vertices[x=0,y=0]{line}{A,B}
+      \Vertices[x=-0.5,y=-1]{line}{C,D,E}
+      \Edges(A,C,B,D,A,E,B)
+    \end{scope}
+    \begin{scope}[xshift=4cm, yshift=-12cm]
+      \SetVertexNoLabel
+      \Vertices[x=0,y=0]{line}{A,B,C}
+      \Vertices[x=0,y=-1]{line}{D,E,F}
+      \Edges(A,D,B,E,C,F,B,D,C,E,A,F)
+    \end{scope}
+    \begin{scope}[xshift=7.5cm, yshift=-12cm]
+      \SetVertexNoLabel
+      \Vertices[x=2.5,y=0]{line}{A}
+      \Vertices[x=0,y=-1]{line}{B,C,D,E,F,G}
+      \Edge(A)(B)
+      \Edge(A)(C)
+      \Edge(A)(D)
+      \Edge(A)(E)
+      \Edge(A)(F)
+      \Edge(A)(G)
+    \end{scope}
+  \end{tikzpicture}
+  \caption{Quelques familles de graphes célèbres. (a) Le graphe complet $K_n$ pour $n = 1,2,3,4,5$. (b) Le cycle $C_n$ pour $n = 3,4,5,6,7$. (c) La roue $W_n$ pour $n = 3,4,5,6,7$. (d) L'hypercube $H_n$ pour $n = 1,2,3,4$. (e) Les graphes bipartis $K_{2,3}$, $K_{3,3}$ et $K_{1,6}$.}\label{F:familles}
+\end{figure}
 
 \begin{figure}
   \centering
