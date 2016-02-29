@@ -67,7 +67,7 @@
 ~\vfill
 \ifprintanswers
   \vskip 1.2cm
-  \centerline{\Large\textbf{Solution de l'épreuve}}
+  \centerline{\Large\textbf{Answers}}
   \vskip 0.5cm
 \else
   \vskip 1.2cm
@@ -75,7 +75,7 @@
   \vskip 1.2cm
 \fi
 \hrule \vskip \baselineskip
-This challenge contains 20 questions, divided in 4 themes of 5 questions each~:
+This challenge contains 20 questions, divided in 4 themes of 5 questions~:
 \begin{enumerate}
   \item Combinatorics;
   \item Graph Theory;
@@ -90,7 +90,7 @@ Each answer will be valued equally. Good luck !
 \begin{questions}
 
 % Combinatoire
-\uplevel{The following questions are about \textbf{combinatorics}, i.e. theories concerning the counting or enumeration of objects.}
+\uplevel{The following questions are about \textbf{combinatorics}, i.e. the theory of counting and enumerating objects.}
 
 % Compter des mots
 \question
@@ -105,13 +105,13 @@ A binary string $w$ avoids the pattern $u$ if it cannot be written $w = xuy$, wh
 \question
 A \emph{binary tree} is a tree-like structure in which any vertex has at most $2$ children. For any integer $n \geq 0$, let $A(n)$ then number of trees with $n$ vertexes.
 \begin{parts}
-  \part Prove that the first values of $A(n)$ are what is shown in the table below~:
+  \part Prove that the first values of $A(n)$ are those shown in the table below:
   \begin{center} \begin{tabular}{c|ccccc}
     $n$    & 0 & 1 & 2 & 3 & 4 \\
     \hline
     $A(n)$ & 1 & 1 & 2 & 5 & 14 \\
   \end{tabular} \end{center}
-  \part It is a well-known fact that $A(n)$ validates the following equations~:
+  \part It is a well-known fact that $A(n)$ satisfies the following equations:
   \begin{eqnarray*}
     A(0) & = & 1, \\
     A(n) & = & \sum_{i=0}^{n-1} A(i)A(n-i-1).
@@ -121,7 +121,7 @@ A \emph{binary tree} is a tree-like structure in which any vertex has at most $2
 
 % Numéros de téléphone
 \question
-How many 10-digit telephone numbers containing at least once each odd number are there (supposing all $10^{10}$ possibilities are valid)? For instance, the number $418$-$937$-$5351$ contains the digits $1$, $3$, $5$, $7$ and $9$, and thus should be taken into account.
+How many 10-digit phone numbers containing each odd digit at least once are there (supposing all $10^{10}$ possibilities are valid)? For instance, the number $418$-$937$-$5351$ contains the digits $1$, $3$, $5$, $7$ and $9$, and thus should be taken into account.
 \begin{solution}
 Il est plus facile de compter d'abord le nombre $n$ de numéros de téléphones pour lesquels il manque au moins un chiffre impair. Dénotons par $N_i$ l'ensemble des numéros de téléphone dans lesquels le chiffre $i$ n'apparaît pas. Alors clairement, 
 $$n = \left| N_1 \cup N_3 \cup N_5 \cup N_7 \cup N_9 \right|.$$
@@ -144,11 +144,11 @@ $$10^{10} - 9228691000 = 771309000.$$
 
 % Chemins dans une grille
 \question
-Consider a grid of $r$ rows and $c$ columns (see Figure~\ref{F:grille}). In this question, we're interested in counting the paths between coordinates $(0,0)$ to coordinates $(c,r)$ by using only right (identified by the letter $r$) and up (identified by $u$) movements. Give us a formula counting the number of different paths from $(0,0)$ to $(c,r)$ for any $r,c \geq 1$.
+Consider a grid of $r$ rows and $c$ columns (see Figure~\ref{F:grille}). In this question, we're interested in counting the paths between coordinates $(0,0)$ to coordinates $(c,r)$ by using only right (identified by the letter $r$) and up (identified by $u$) movements. Suggest a formula counting the number of different paths from $(0,0)$ to $(c,r)$ for any $r,c \geq 1$.
 
 % Nombres répétitifs
 \question
-An integer is \emph{repetitive} if all its digits in base $10$ are identical. For instance $33$ and $999$ are repetitive. Therefore, let $E$ a set of $12$ values from $1$ to $99$, inclusively. Prove that there are two integers $x,y \in E$ such as $x - y$ is repetitive.
+An integer is \emph{repetitive} if all its digits in base $10$ are identical. For instance $33$ and $999$ are repetitive. Let $E$ any set of $12$ distinct values chosen between $1$ to $99$ inclusively. Prove that there are two integers $x,y \in E$ such as $x - y$ is repetitive.
 \begin{solution}
 Soit $X$ l'ensemble des nombres entre $1$ et $99$. Il y a au moins deux solutions à ce p
 roblème.
@@ -158,15 +158,15 @@ roblème.
 \end{solution}
 
 % Graphes
-\uplevel{The following questions are about \textbf{Graph Theory}.
+\uplevel{The following questions concern \textbf{Graph Theory}.
 A \emph{simple graph} is a couple $G = (V,E)$ where $V$ is its set of \emph{vertices} and $E \subseteq \mathcal{P}_2(V)$ is its set of \emph{edges}, where $\mathcal{P}_2(V)$ is the set of unique pair of elements of $V$.
 For instance, the graph $G = (V,E)$ defined by the sets
 $$V = \{a,b,c,d\} \quad \text{et} \quad E = \{\{a,b\}, \{a,c\}, \{b,c\}, \{c,d\}\}$$
-is represented by figure \ref{F:graphe}. Note: in a simple graph, there are neither multiple edges, nor loops (from an edge to a vertex to itself).}
+is represented by figure \ref{F:graphe}. Note: in a simple graph, there are neither multiple edges, nor loops (an edge going from a vertex to itself).}
 
 % Familles de graphes
 \question
-Several simple graph families are often used. Here are some examples (see figure~\ref{F:familles})~:
+Several simple graph families are often used. Here are some examples (see Figure~\ref{F:familles})~:
 \label{graphdef}\begin{enumerate}[(i)]
   \item For any integer $n \geq 1$, the \emph{complete} graph of $n$ vertices $K_n$;
   \item For any integer $n \geq 3$, the \emph{cycle} de $n$ vertices $C_n$;
@@ -174,7 +174,7 @@ Several simple graph families are often used. Here are some examples (see figure
   \item For any integer $n \geq 1$, the \emph{hypercube} of dimension $n$ is denoted by $H_n$;
   \item For any pair of integers $m,n \geq 1$, the \emph{complete bipartite} graph $K_{m,n}$;
 \end{enumerate}
-For any values $n$ and $m$ as defined in \ref{graphdef}, what is the number of edges in the following graphs~:
+For any well-defined values $n$ and $m$, what is the number of edges in the following graphs~:
 \begin{parts}
   \part $K_n$;
   \part $C_n$;
@@ -185,10 +185,10 @@ For any values $n$ and $m$ as defined in \ref{graphdef}, what is the number of e
 
 % Transversaux d'arêtes
 \question
-Let $G = (V,E)$ a simple graph. A set of vertices $U \subseteq V$ is a \emph{vertex cover} if each vertex of $G$ has at least one of its extremities in $U$, i.e for each edge $\{u,v\} \in E$, there either exists $u \in U$ or $v \in U$.
-For instance in the graph illustrated in \ref{F:graphe}, the set $\{a,c\}$ is a vertex cover. A vertex cover $U$ is \emph{minimum} for $G$ if there are no vertex cover $U'$ of smaller cardinality, i.e. such as $|U'| < |U|$.
+Let $G = (V,E)$ be a simple graph. A set of vertices $U \subseteq V$ is a \emph{vertex cover} if each vertex of $G$ has at least one of its extremities in $U$, i.e for each edge $\{u,v\} \in E$, there either exists $u \in U$ or $v \in U$.
+For instance, in the graph illustrated in \ref{F:graphe}, the set $\{a,c\}$ is a vertex cover. A vertex cover $U$ is \emph{minimum} for $G$ if there are no vertex cover $U'$ of smaller cardinality, i.e. such as $|U'| < |U|$.
 
-For any well-defined integers $n$ and $m$, what is the minimal vertex cover for the following graphs~:
+For any well-defined integers $n$ and $m$, what is the size of a minimum vertex cover for the following graphs~:
 \begin{parts}
   \part $K_n$;
   \part $C_n$;
@@ -199,14 +199,14 @@ For any well-defined integers $n$ and $m$, what is the minimal vertex cover for 
 
 % Problème HAMD
 \question
-A graph $G$ is \emph{hamiltonian} if it possesses at least one cycle through each of its vertices \textbf{exactly} once.
+A graph $G$ is \emph{Hamiltonian} if it contains at least one cycle passing through each of its vertices \textbf{exactly} once.
 
-Let HAMD the problem of \emph{deciding} whether a simple graph $G$ is hamiltonian or not, and let HAM the problem of \emph{finding} a hamiltonian cycle in a graph $G$ (the value \emph{nothing} is returned if no such cycle could be found). Let us consider the following functions~:
+Let HAMD the problem of \emph{deciding} whether a simple graph $G$ is Hamiltonian or not, and let HAM the problem of \emph{finding} a Hamiltonian cycle in a graph $G$ (the value \emph{nothing} is returned if no such cycle could be found). Let us consider the following functions~:
 \begin{itemize}
   \item \Call{IsHamiltonian}{$G$ : graph} : boolean;
   \item \Call{HamiltonianCycle}{$G$ : graph} : cycle or \emph{nothing}.
 \end{itemize}
-Prove that the two problems are equally difficult minus a O(n) complexity difference. I.e, if $\textsc{IsHamiltonian}$ is temporaly constant, then we can implement $\textsc{HamiltonianCycle}$ such as it is of O(n) temporal complexity (and vice-versa). \emph{Note~:} You will need to write pseudo-code implementing both functions in relation to each other.
+Prove that the two problems are equally difficult up to a polynomial complexity difference, i.e, if $\textsc{IsHamiltonian}$ is assumed having constant complexity, then we can implement $\textsc{HamiltonianCycle}$ such as it has polynomial time and space complexity (and vice-versa). \emph{Note~:} You will need to write pseudo-code implementing both functions with respect to each other.
 \begin{solution}
 Supposons d'abord que \textsc{CycleHamiltonien} utilise un temps constant. Alors la fonction
 \begin{algorithmic}[1]
@@ -240,7 +240,7 @@ Sa complexité est de $\bigo(m(m + n)) = \bigo(m^2)$ qui est bien polynomiale.
 
 % Coloriages
 \question\label{Q:kparti}
-Let $G = (V,E)$ a non-oriented graph and $k$ a positive integer, a function $c : V \rightarrow \{1,2,\ldots,k\}$ is a \emph{$k$-colouring} of $G$ if for any edge $\{u,v\} \in E$, we have $c(u) \neq c(v)$, i.e. if two adjacent vertices have a different colour. If $G$ can be coloured using $k$ colours, it is $k$-colourable.
+Let $G = (V,E)$ a undirected graph and $k$ a positive integer, a function $c : V \rightarrow \{1,2,\ldots,k\}$ is a \emph{$k$-coloring} of $G$ if for any edge $\{u,v\} \in E$, we have $c(u) \neq c(v)$, i.e. if two adjacent vertices have a different color. If $G$ can be colored using $k$ colors, it is $k$-colorable.
 
 A graph $G$ is $k$-partite if it possesses subsets $V_1, V_2, \ldots, V_k$ such as
 \begin{enumerate}
@@ -250,12 +250,12 @@ A graph $G$ is $k$-partite if it possesses subsets $V_1, V_2, \ldots, V_k$ such 
 \end{enumerate}
 Therefore, a set of vertices $V$ can be partitioned in $k$ slices such as the edges between two vertices in a same slice are forbidden.
 
-Prove that any $k$-partite graph is $k$-colourable.
+Prove that any $k$-partite graph is $k$-colorable.
 
 % P-équivalence coloriages
 \question
-Let $k$-COLORD the problem of \emph{deciding} whether a non-oriented graph $G$ is $k$-colourable and $k$-COLOR the problem of \emph{finding} such a $k$-colouring of $G$.
-Prove that the problems $k$-COLORD and $k$-COLOR are equally difficult minus a O(n) complexity difference. \emph{Note~:} Question~\ref{Q:kparti} should be helpful with this.
+Let $k$-COLORD the problem of \emph{deciding} whether a non-oriented graph $G$ is $k$-colorable and $k$-COLOR the problem of \emph{finding} such a $k$-coloring of $G$.
+Prove that the problems $k$-COLORD and $k$-COLOR are equally difficult up to a polynomial time complexity difference. \emph{Note~:} Question~\ref{Q:kparti} should be helpful with this.
 
 % Jeux
 \uplevel{The following questions are about \textbf{game theory and riddles}.}
@@ -272,7 +272,7 @@ Explain on which conditions player A or player B has a winning strategy at Nim. 
 
 % Échecs
 \question
-(From the book \emph{The Chess Mysteries of the Arabian Knights}, by R. Smullyan) Let us consider the following placement in a games of Checks.
+(From the book \emph{The Chess Mysteries of the Arabian Knights}, by R. Smullyan) Let us consider the following placement in a games of chess:
 \fenboard{8/8/8/1r1b4/B7/8/8/3k4 w - - 0 20}
 \[ \showboard \]
 The position of the white king is hidden. Furthermore, we do not know whose turn it is to play.
@@ -284,17 +284,17 @@ La solution se trouve à \href{https://www.chess.com/forum/view/fun-with-chess/w
 
 % Jeu d'échecs à deux coups
 \question
-We will now take interest in a variation of the traditional chekers game, in which each player can play \emph{twice in one round}.
+We will now take interest in a variation of the traditional chess game, in which each player can play \emph{twice in one round}.
 Knowing the whites begin and blacks play second, prove that with this variant, blacks cannot have a winning strategy.
 \emph{Note~:} try with a proof by contradiction.
 
 % Jet d'oeuf
 \question
 You find yourself in a $100$ floor building (numbered from $1$ to $100$) with $2$ eggs.
-Each of these eggs has a special capacity in that there is a number $n$ between $1$ and $100$ (the number $n$ is the same for both eggs) such as~:
+Each of these eggs has a specific resistance described by a number $n$ between $1$ and $100$ (the number $n$ is the same for both eggs) such that~:
 \begin{itemize}
-  \item if you let it fall one floor between $1$ and $n$, it won't break;
-  \item if you let it fall one floor between $n + 1$ and $100$, it will break.
+  \item if you let it fall from any floor between $1$ and $n$, it won't break;
+  \item if you let it fall from any floor between $n + 1$ and $100$, it will break.
 \end{itemize}
 Propose an optimal strategy to guess the value of $n$ which minimizes how many times you have to let an egg fall. You will have to explain thoroughly your answer.
 
@@ -302,11 +302,13 @@ Propose an optimal strategy to guess the value of $n$ which minimizes how many t
 \question
 You are a rich, unscrupulous man, possessing an unlimited number of slaves.
 In six hours, you are organizing a banquet at which a large number of guests are invited.
-However, you just learnt that amongst the $128$ barrels of wine you intent to serve, one has been poisoned.
+However, you just learnt that amongst the $128$ barrels of wine you intend to serve, one has been poisoned.
 You know the kind of poison used, and know it only shows symptoms of intoxication 4 hours following ingestion.
 You decide to try the barrels on your slaves.
 
-Propose a strategy that will allow you to dertermine exactly which barrel of wine has been poisoned, while minimizing the number of caualties amongst slaves. The lower the number, the more points you will be awarded.
+Propose a strategy that will allow you to determine exactly which barrel of wine has been poisoned, while minimizing the number of casualties amongst slaves. The lowest the number, the more points you will be awarded.
+
+\emph{Note:} Deciding to cancel the banquet is certainly more human, but will not get you any points...
 
 % Probabilités
 \uplevel{The following questions are about \textbf{probabilities}.}
@@ -314,21 +316,21 @@ Propose a strategy that will allow you to dertermine exactly which barrel of win
 % Générateur non-uniforme
 \question
 Consider a function $\Call{NonUniform}$ which returns the value $0$ with a probability of $0.7$ and the value $1$ with a probability of $0.3$.
-Suppose this is the only function you have the ability to call to simulate any kind of randomness, the usual functions being unavailable.
+Suppose this is the only function you are allowed to call to simulate any kind of randomness, the usual functions being unavailable.
 Naturally, you may call $\Call{NonUniform}$ as much as you would like.
-By using $\Call{NonUniform}$, give us the pseudo-code of a function $\Call{Uniform}$, which returns the value $0$ or $1$ with an equivalent probability.
+By using $\Call{NonUniform}$, give us the pseudo-code of a function $\Call{Uniform}$, which returns the value $0$ or $1$ with equal probability.
 \begin{solution}
 \end{solution}
 
 % Algorithmes et probabilités
 \question
-Admit that for a decision problem $P$, you are given two algorithms, $A$ and $B$.
-You also have the following informations~:
+Assume that for a decision problem $P$, you are given two algorithms, $A$ and
+$B$. You also have the following information:
 \begin{itemize}
   \item When algorithm $A$ returns \emph{true}, you know the answer to $P$ is necessarily \emph{true}. However, if $A$ returns \emph{false}, it may be mistaken with a probability of $0.05$.
-  \item When algorithm $B$ returns \emph{false}, you know the answer to $P$ is necessarily \emph{false}. However, if $A$ returns \emph{true}, it may be mistaken with a probability of $0.01$.
+  \item When algorithm $B$ returns \emph{false}, you know the answer to $P$ is necessarily \emph{false}. However, if $B$ returns \emph{true}, it may be mistaken with a probability of $0.01$.
 \end{itemize}
-Is it possible to code an algorithm $C$ from algorithms $A$ and $B$ such as algorithm $C$ returns \emph{true} or \emph{false} without ever failing ? Justify your answer.
+Is it possible to code an algorithm $C$ from algorithms $A$ and $B$ such that algorithm $C$ returns \emph{true} or \emph{false} without ever failing? Justify your answer.
 
 % Arbre binaire de recherche
 \question
@@ -346,7 +348,7 @@ Using only the above services, give the pseudo-code of a function
 \end{center}
 which returns a random value from tree $T$ (we suppose one same value cannot be represented more than once, to simplify the problem).
 Note that each value must have the \textbf{same probability} of being returned.
-As such, you may suppose there exists a \Call{random}{$n$} function which returns a random integer between $0$ and $n - 1$ inclusively with a uniform probability.
+For this purpose, you may suppose there exists a \Call{random}{$n$} function which returns a random integer between $0$ and $n - 1$ inclusively with a uniform probability.
 
 % Échantillon
 \question
@@ -367,13 +369,13 @@ To do this, let us use the following algorithm~:
   \EndFunction
 \end{algorithmic}
 \begin{parts}
-  \part What is the probability of the algorithm not finishing ?
+  \part What is the probability that the algorithm never ends?
   \part Prove that the average number of loops is $\bigo(n\log n)$, where $n$ is the size of the set $E$ et $0 \leq i \leq n$.
 \end{parts}
 
 % Échantillon
 \question
-Consider an unsorted, array $T$ of $n$ integers. Let $x$ an integer with $k$ occurences in $T$. Clearly, $0 \leq k \leq n$.
+Consider an unsorted array $T$ of $n$ integers. Let $x$ an integer with $k$ occurences in $T$. Clearly, $0 \leq k \leq n$.
 
 We're interested in the number of values inspected when linearly searching the array $T$. Precisely, we are considering the following algorithm ($T$ is indexed from $0$)~:
 \begin{algorithmic}[1]
@@ -388,7 +390,7 @@ We're interested in the number of values inspected when linearly searching the a
 \end{algorithmic}
 For any possible value of $k$, give a formula indicating the average number of values inspected.
 You must provide an \textbf{exact} expression, i.e. not using $\bigo$ notation.
-\emph{Note~:} Separately consider cases $k = 0$, $k = 1$ and $k > 1$.
+\emph{Note~:} Divide your argument into the three cases $k = 0$, $k = 1$ and $k > 1$.
 
 \end{questions}
 
@@ -582,7 +584,7 @@ You must provide an \textbf{exact} expression, i.e. not using $\bigo$ notation.
       \Edge(A)(G)
     \end{scope}
   \end{tikzpicture}
-  \caption{Somme famous families of graphs. (a) The complete graph $K_n$ for $n = 1,2,3,4,5$. (b) The cycle $C_n$ for $n = 3,4,5,6,7$. (c) The wheel $W_n$ for $n = 3,4,5,6,7$. (d) The hypercube $H_n$ for $n = 1,2,3,4$. (e) The bipartite graphs $K_{2,3}$, $K_{3,3}$ and $K_{1,6}$.}\label{F:familles}
+  \caption{Some famous families of graphs. (a) The complete graph $K_n$ for $n = 1,2,3,4,5$. (b) The cycle $C_n$ for $n = 3,4,5,6,7$. (c) The wheel $W_n$ for $n = 3,4,5,6,7$. (d) The hypercube $H_n$ for $n = 1,2,3,4$. (e) The bipartite graphs $K_{2,3}$, $K_{3,3}$ and $K_{1,6}$.}\label{F:familles}
 \end{figure}
 
 \begin{figure}
